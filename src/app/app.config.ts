@@ -9,7 +9,7 @@ import {provideRouterStore, routerReducer} from '@ngrx/router-store';
 import {provideStoreDevtools} from "@ngrx/store-devtools";
 import {authFeature} from "./auth/store/auth.reducers";
 import {provideHttpClient, withInterceptors} from "@angular/common/http";
-import {authInterceptor} from "./shared/services/authinterceptor.service";
+import {authInterceptor} from "./shared/interceptors/auth.interceptor";
 
 export const appConfig: ApplicationConfig = {
   providers: [
