@@ -1,3 +1,36 @@
+import {createFeatureSelector, createSelector} from '@ngrx/store'
+import {AuthStateInterface} from "./auth.state";
+
+export const authFeatureSelector = createFeatureSelector<
+  AuthStateInterface
+>('auth')
+
+export const isSubmittingSelector = createSelector(
+  authFeatureSelector,
+  (authState: AuthStateInterface) => authState.isSubmitting
+)
+
+export const errorSelector = createSelector(
+  authFeatureSelector,
+  (authState: AuthStateInterface) => authState.error
+)
+
+export const isLoggedInSelector = createSelector(
+  authFeatureSelector,
+  (authState: AuthStateInterface) => !!authState.currentUser
+)
+
+export const isAnonymousSelector = createSelector(
+  authFeatureSelector,
+  (authState: AuthStateInterface) => !authState.currentUser
+)
+
+export const currentUserSelector = createSelector(
+  authFeatureSelector,
+  (authState: AuthStateInterface) => authState.currentUser
+)
+
+
 // import { AppState } from '../index';
 // import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
 // import { MessagesState } from './messages.state';
