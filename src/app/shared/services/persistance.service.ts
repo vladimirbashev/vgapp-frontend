@@ -22,11 +22,16 @@ export class PersistanceService {
   }
 
   get(key: string): any {
-    let item = localStorage.getItem(key)
-    if (item) {
-      return JSON.parse(item)
-    } else {
-      console.error('Error getting data from localStorage')
+    try {
+      let item = localStorage.getItem(key)
+      if (item) {
+        return JSON.parse(item)
+      } else {
+        console.error('Error getting data from localStorage')
+        return null
+      }
+    } catch (e) {
+      console.error('Error getting data from localStorage', e)
       return null
     }
   }
