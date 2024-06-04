@@ -6,10 +6,11 @@ import {
   HttpEvent
 } from '@angular/common/http'
 import {Observable} from 'rxjs'
+import {PersistanceService} from "./persistance.service";
 
-import {PersistanceService} from 'src/app//shared/services/persistance.service'
-
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private persistanceService: PersistanceService) {}
 

@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core'
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class PersistanceService {
   set(key: string, data: any): void {
     try {
@@ -20,10 +22,11 @@ export class PersistanceService {
   }
 
   get(key: string): any {
-    try {
-      return JSON.parse(localStorage.getItem(key))
-    } catch (e) {
-      console.error('Error getting data from localStorage', e)
+    let item = localStorage.getItem(key)
+    if (item) {
+      return JSON.parse(item)
+    } else {
+      console.error('Error getting data from localStorage')
       return null
     }
   }

@@ -9,7 +9,9 @@ import {UserInterface} from "../../shared/types/user.interface";
 import {TokenRequestInterface} from "../types/tokenRequest.interface";
 import {environment} from "../../../environments/environment";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
   constructor(private http: HttpClient, public jwtHelper: JwtHelperService,
               private persistanceService: PersistanceService) {}
