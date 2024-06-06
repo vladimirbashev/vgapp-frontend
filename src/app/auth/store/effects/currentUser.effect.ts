@@ -3,9 +3,9 @@ import {createEffect, Actions, ofType} from '@ngrx/effects'
 import {map, catchError, switchMap, tap} from 'rxjs/operators'
 import {Router} from '@angular/router'
 import {of} from 'rxjs'
-import {logoutAction} from "../actions/logout.action";
 import {CurrentUserActions} from "../actions/currentUser.action";
 import {AuthService} from "../../services/auth.service";
+import {LogoutActions} from "../actions/logout.action";
 
 
 export const currentUser = createEffect(
@@ -30,7 +30,7 @@ export const currentUserFailure = createEffect(
   (actions$ = inject(Actions)) => {
     return actions$.pipe(
       ofType(CurrentUserActions.failure),
-      map(() => logoutAction())
+      map(() => LogoutActions.logout())
     );
   },
   { functional: true }

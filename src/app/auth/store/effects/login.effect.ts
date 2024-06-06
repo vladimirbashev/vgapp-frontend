@@ -1,4 +1,4 @@
-import {inject, Injectable} from '@angular/core'
+import {inject} from '@angular/core'
 import {createEffect, Actions, ofType} from '@ngrx/effects'
 import {map, catchError, switchMap, tap} from 'rxjs/operators'
 import {HttpErrorResponse} from '@angular/common/http'
@@ -32,7 +32,7 @@ export const login = createEffect(
 );
 
 export const getCurrentUser$ = createEffect(
-  (actions$ = inject(Actions), authService = inject(AuthService), persistanceService = inject(PersistanceService)) => {
+  (actions$ = inject(Actions)) => {
     return actions$.pipe(
       ofType(LoginActions.success),
       map(() => CurrentUserActions.get())

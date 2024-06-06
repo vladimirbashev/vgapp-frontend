@@ -1,44 +1,38 @@
-import {Injectable} from '@angular/core'
+import {inject} from '@angular/core'
 import {createEffect, Actions, ofType} from '@ngrx/effects'
 import {catchError, map, tap} from 'rxjs/operators'
 import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import {of} from "rxjs";
-import {logoutAction, logoutFailureAction, logoutSuccessAction} from "../actions/logout.action";
 import {PersistanceService} from "../../../shared/services/persistance.service";
+import {LogoutActions} from "../actions/logout.action";
 
 
-@Injectable()
-export class LogoutEffect {
-  logout$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(logoutAction),
+export const logout = createEffect(
+  (actions$ = inject(Actions), persistanceService = inject(PersistanceService)) => {
+    return actions$.pipe(
+      ofType(LogoutActions.logout),
       map(() => {
-        this.persistanceService.remove('accessToken')
-        return logoutSuccessAction()
+        persistanceService.remove('accessToken')
+        return LogoutActions.success()
       }),
 
       catchError((errorResponse: HttpErrorResponse) => {
-        return of(logoutFailureAction({error: errorResponse.error}))
+        return of(LogoutActions.failure({error: errorResponse.error}))
       })
-    ),
-    {functional: true }
-  )
+    );
+  },
+  { functional: true }
+);
 
-  redirectAfterLogout$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(logoutSuccessAction),
-        tap(() => {
-          this.router.navigateByUrl('/login')
-        })
-      ),
-    {dispatch: false, functional: true}
-  )
-
-  constructor(
-    private actions$: Actions,
-    private router: Router,
-    private persistanceService: PersistanceService,
-  ) {}
-}
+export const redirectAfterLogout = createEffect(
+  (actions$ = inject(Actions), router = inject(Router)) => {
+    return actions$.pipe(
+      ofType(LogoutActions.success),
+      tap(() => {
+        router.navigateByUrl('/login')
+      })
+    );
+  },
+  { functional: true }
+);

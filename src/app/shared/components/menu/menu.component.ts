@@ -2,12 +2,13 @@ import {Component, inject, OnInit} from '@angular/core';
 import {MatToolbar} from "@angular/material/toolbar";
 import {RouterLink} from "@angular/router";
 import {Observable} from "rxjs";
-import {logoutAction} from "../../../auth/store/actions/logout.action";
 import {UserInterface} from "../../types/user.interface";
 import {select, Store} from "@ngrx/store";
 import {currentUserSelector, isAnonymousSelector, isLoggedInSelector} from "../../../auth/store/auth.selectors";
 import {AsyncPipe, NgIf} from "@angular/common";
 import {MatButton} from "@angular/material/button";
+import {LogoutActions} from "../../../auth/store/actions/logout.action";
+
 
 @Component({
   selector: 'app-menu',
@@ -42,6 +43,6 @@ export class MenuComponent implements OnInit {
   }
 
   onLogout() {
-    this.store.dispatch(logoutAction())
+    this.store.dispatch(LogoutActions.logout())
   }
 }
