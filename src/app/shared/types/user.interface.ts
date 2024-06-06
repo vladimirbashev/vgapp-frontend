@@ -4,6 +4,4 @@ export interface UserInterface {
   createdate: string
   updatedate: string
   username: string
-  bio: string | null
-  image: string | null
 }
