@@ -13,8 +13,7 @@ import {environment} from "../../../environments/environment";
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient, public jwtHelper: JwtHelperService,
-              private persistanceService: PersistanceService) {}
+  constructor(private http: HttpClient, private persistanceService: PersistanceService) {}
 
   register(data: RegisterRequestInterface): Observable<UserInterface> {
     const url = environment.apiUrl + '/users/'
@@ -36,10 +35,11 @@ export class AuthService {
   }
 
   public isAuthenticated(): boolean {
+    const jwtHelper = new JwtHelperService();
     // const token = localStorage.getItem('accessToken');
     const token = this.persistanceService.get('accessToken');
     // Check whether the token is expired and return
     // true or false
-    return !this.jwtHelper.isTokenExpired(token);
+    return !jwtHelper.isTokenExpired(token);
   }
 }

@@ -1,58 +1,49 @@
-import {Injectable} from '@angular/core'
+import {inject} from '@angular/core'
 import {createEffect, Actions, ofType} from '@ngrx/effects'
 import {map, catchError, switchMap, tap} from 'rxjs/operators'
-import {HttpErrorResponse} from '@angular/common/http'
 import {Router} from '@angular/router'
 import {of} from 'rxjs'
-import {UserInterface} from "../../../shared/types/user.interface";
 import {logoutAction} from "../actions/logout.action";
-import {currentUserAction, currentUserFailureAction, currentUserSuccessAction} from "../actions/currentUser.action";
+import {CurrentUserActions} from "../actions/currentUser.action";
 import {AuthService} from "../../services/auth.service";
-import {PersistanceService} from "../../../shared/services/persistance.service";
 
 
-@Injectable()
-export class CurrentUserEffect {
-  currentUser$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(currentUserAction),
-      switchMap(() => {
-        return this.authService.getCurrentUser().pipe(
-          map((user: UserInterface) => {
-            return currentUserSuccessAction({user})
-          }),
-
-          catchError((errorResponse: HttpErrorResponse) => {
-            return of(currentUserFailureAction({error: errorResponse.error}))
-          })
+export const currentUser = createEffect(
+  (actions$ = inject(Actions), authService = inject(AuthService)) => {
+    return actions$.pipe(
+      ofType(CurrentUserActions.get),
+      switchMap(() =>
+        authService.getCurrentUser().pipe(
+          map((user) => CurrentUserActions.success({ user })),
+          catchError((error: { message: string }) =>
+            of(CurrentUserActions.failure({ errorMsg: error.message }))
+          )
         )
-      })
-    ),
-    {functional: true }
-  )
+      )
+    );
+  },
+  { functional: true }
+);
 
-  currentUserFailure$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(currentUserFailureAction),
+
+export const currentUserFailure = createEffect(
+  (actions$ = inject(Actions)) => {
+    return actions$.pipe(
+      ofType(CurrentUserActions.failure),
       map(() => logoutAction())
-    )
-  )
+    );
+  },
+  { functional: true }
+);
 
-  redirectAfterLoggedIn$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(currentUserSuccessAction),
-        tap(() => {
-          this.router.navigateByUrl('/')
-        })
-      ),
-    {dispatch: false, functional: true }
-  )
-
-  constructor(
-    private actions$: Actions,
-    private authService: AuthService,
-    private router: Router,
-    private persistanceService: PersistanceService,
-  ) {}
-}
+export const redirectAfterLoggedIn = createEffect(
+  (actions$ = inject(Actions), router = inject(Router)) => {
+    return actions$.pipe(
+      ofType(CurrentUserActions.success),
+      tap(() => {
+        router.navigateByUrl('/')
+      })
+    );
+  },
+  { dispatch: false, functional: true }
+);

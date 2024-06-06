@@ -1,8 +1,8 @@
 import {Component, inject, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {MenuComponent} from "./shared/components/menu/menu.component";
-import {currentUserAction} from "./auth/store/actions/currentUser.action";
 import {Store} from "@ngrx/store";
+import {CurrentUserActions} from "./auth/store/actions/currentUser.action";
 
 @Component({
   selector: 'app-root',
@@ -16,6 +16,6 @@ export class AppComponent implements OnInit{
   private readonly store: Store = inject(Store);
 
   ngOnInit(): void {
-    this.store.dispatch(currentUserAction())
+    this.store.dispatch(CurrentUserActions.get())
   }
 }

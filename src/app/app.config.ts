@@ -10,6 +10,7 @@ import {provideStoreDevtools} from "@ngrx/store-devtools";
 import {authFeature} from "./auth/store/auth.reducers";
 import {provideHttpClient, withInterceptors} from "@angular/common/http";
 import {authInterceptor} from "./shared/interceptors/auth.interceptor";
+import * as currentUserEffects from './auth/store/effects/currentUser.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,7 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideStore({router: routerReducer}),
     provideState(authFeature),
-    // provideEffects([AuthEffects]),
+    provideEffects([currentUserEffects]),
     provideRouterStore(),
     provideStoreDevtools({maxAge: 25, logOnly: !isDevMode()}),
     provideHttpClient(withInterceptors([authInterceptor])),

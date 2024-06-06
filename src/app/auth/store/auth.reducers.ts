@@ -3,7 +3,8 @@ import { authInitialState, AuthStateInterface } from './auth.state';
 import {registerAction, registerFailureAction, registerSuccessAction} from "./actions/register.actions";
 import {loginAction, loginFailureAction, loginSuccessAction} from "./actions/login.action";
 import {logoutAction, logoutFailureAction, logoutSuccessAction} from "./actions/logout.action";
-import {currentUserAction, currentUserFailureAction, currentUserSuccessAction} from "./actions/currentUser.action";
+import {CurrentUserActions} from "./actions/currentUser.action";
+
 
 export const authFeature = createFeature({
   name: 'auth',
@@ -81,14 +82,14 @@ export const authFeature = createFeature({
       })
     ),
     on(
-      currentUserAction,
+      CurrentUserActions.get,
       (state, action): AuthStateInterface => ({
         ...state,
         isSubmitting: true,
       })
     ),
     on(
-      currentUserSuccessAction,
+      CurrentUserActions.success,
       (state, action): AuthStateInterface => ({
         ...state,
         isSubmitting: false,
@@ -96,7 +97,7 @@ export const authFeature = createFeature({
       })
     ),
     on(
-      currentUserFailureAction,
+      CurrentUserActions.failure,
       (state, action): AuthStateInterface => ({
         ...state,
         isSubmitting: false,

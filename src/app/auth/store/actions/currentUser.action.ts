@@ -1,18 +1,17 @@
-import {createAction, props} from '@ngrx/store'
+import {createActionGroup, emptyProps, props} from '@ngrx/store'
 import {UserInterface} from "../../../shared/types/user.interface";
-import {ActionTypes} from "../actionTypes";
 
 
-export const currentUserAction = createAction(
-  ActionTypes.CURRENT_USER
-)
+export const CurrentUserActions = createActionGroup({
+  source: 'Current User',
+  events: {
+    // defining an event without payload using the `emptyProps` function
+    'get': emptyProps(),
 
-export const currentUserSuccessAction = createAction(
-  ActionTypes.CURRENT_USER_SUCCESS,
-  props<{user: UserInterface}>()
-)
+    // defining an event with payload using the `props` function
+    'success': props<{user: UserInterface}>(),
 
-export const currentUserFailureAction = createAction(
-  ActionTypes.CURRENT_USER_FAILURE,
-  props<{error: any}>()
-)
+    // defining an event with payload using the props factory
+    'failure': (error: any) => ({ error }),
+  },
+});
