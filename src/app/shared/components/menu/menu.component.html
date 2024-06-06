@@ -3,7 +3,7 @@
   <button mat-button color="accent" [routerLink]="['/']">
     Home
   </button>
-  <button *ngIf="isLoggedIn$ | async" mat-button color="accent" [routerLink]="['/articles', 'new']">
+  <button *ngIf="isLoggedIn$ | async" mat-button color="accent" [routerLink]="['articles', 'new']">
     New Post
   </button>
   <span class="flexExpand"></span>
@@ -14,10 +14,10 @@
   <button *ngIf="isLoggedIn$ | async" mat-button color="accent" (click)="onLogout()">
     Log Out
   </button>
-  <button *ngIf="isAnonymous$ | async" mat-button color="accent" [routerLink]="['/auth', 'login']">
+  <button *ngIf="isAnonymous$ | async" mat-button color="accent" [routerLink]="['login']">
     Sign In
   </button>
-  <button *ngIf="isAnonymous$ | async" mat-button color="accent" [routerLink]="['/auth', 'register']">
+  <button *ngIf="isAnonymous$ | async" mat-button color="accent" [routerLink]="['register']">
     Register
   </button>
 </mat-toolbar>
