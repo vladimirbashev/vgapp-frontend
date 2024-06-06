@@ -3,9 +3,8 @@ import {createEffect, Actions, ofType} from '@ngrx/effects'
 import {map, catchError, switchMap, tap} from 'rxjs/operators'
 import {Router} from '@angular/router'
 import {of} from 'rxjs'
-import {CurrentUserActions} from "../actions/currentUser.action";
 import {AuthService} from "../../services/auth.service";
-import {LogoutActions} from "../actions/logout.action";
+import {CurrentUserActions, LogoutActions} from "../auth.actions";
 
 
 export const currentUser = createEffect(

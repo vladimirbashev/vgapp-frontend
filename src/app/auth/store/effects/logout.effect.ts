@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import {of} from "rxjs";
 import {PersistanceService} from "../../../shared/services/persistance.service";
-import {LogoutActions} from "../actions/logout.action";
+import {LogoutActions} from "../auth.actions";
 
 
 export const logout = createEffect(

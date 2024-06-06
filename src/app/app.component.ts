@@ -2,7 +2,8 @@ import {Component, inject, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {MenuComponent} from "./shared/components/menu/menu.component";
 import {Store} from "@ngrx/store";
-import {CurrentUserActions} from "./auth/store/actions/currentUser.action";
+import {CurrentUserActions} from "./auth/store/auth.actions";
+
 
 @Component({
   selector: 'app-root',

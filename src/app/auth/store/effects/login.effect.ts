@@ -6,8 +6,7 @@ import {of} from 'rxjs'
 import {AuthService} from "../../services/auth.service";
 import {PersistanceService} from "../../../shared/services/persistance.service";
 import {TokenResponseInterface} from "../../types/tokenResponseInterface";
-import {LoginActions} from "../actions/login.action";
-import {CurrentUserActions} from "../actions/currentUser.action";
+import {CurrentUserActions, LoginActions} from "../auth.actions";
 
 
 export const login = createEffect(

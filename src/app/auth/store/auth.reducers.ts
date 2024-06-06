@@ -1,9 +1,6 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { authInitialState, AuthStateInterface } from './auth.state';
-import {CurrentUserActions} from "./actions/currentUser.action";
-import {LoginActions} from "./actions/login.action";
-import {LogoutActions} from "./actions/logout.action";
-import {RegisterActions} from "./actions/register.actions";
+import {CurrentUserActions, LoginActions, LogoutActions, RegisterActions} from "./auth.actions";
 
 
 export const authFeature = createFeature({

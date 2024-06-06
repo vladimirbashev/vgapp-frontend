@@ -6,7 +6,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {UserInterface} from "../../../shared/types/user.interface";
 import {AuthService} from "../../services/auth.service";
-import {RegisterActions} from "../actions/register.actions";
+import {RegisterActions} from "../auth.actions";
 
 
 export const register = createEffect(

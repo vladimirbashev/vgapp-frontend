@@ -7,7 +7,7 @@ import {select, Store} from "@ngrx/store";
 import {currentUserSelector, isAnonymousSelector, isLoggedInSelector} from "../../../auth/store/auth.selectors";
 import {AsyncPipe, NgIf} from "@angular/common";
 import {MatButton} from "@angular/material/button";
-import {LogoutActions} from "../../../auth/store/actions/logout.action";
+import {LogoutActions} from "../../../auth/store/auth.actions";
 
 
 @Component({
