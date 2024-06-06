@@ -1,0 +1,9 @@
+.flexExpand {
+  flex: 1 1 auto;
+}
+
+.banner {
+  /* The image used */
+  color: whitesmoke;
+  background-image:url("/assets/images/banner.png");
+}
