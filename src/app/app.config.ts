@@ -10,7 +10,7 @@ import {provideStoreDevtools} from "@ngrx/store-devtools";
 import {authFeature} from "./auth/store/auth.reducers";
 import {provideHttpClient, withInterceptors} from "@angular/common/http";
 import {authInterceptor} from "./shared/interceptors/auth.interceptor";
-import * as currentUserEffects from './auth/store/effects/currentUser.effect';
+import * as currentUserEffects from './auth/store/effects/currentUser.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
