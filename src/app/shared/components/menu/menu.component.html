@@ -3,21 +3,27 @@
   <button mat-button color="accent" [routerLink]="['/']">
     Home
   </button>
-  <button *ngIf="isLoggedIn$ | async" mat-button color="accent" [routerLink]="['articles', 'new']">
-    New Post
-  </button>
+  @if (currentUser$ | async) {
+    <button mat-button color="accent" [routerLink]="['articles', 'new']">
+      New Post
+    </button>
+  }
   <span class="flexExpand"></span>
-  <button *ngIf="isLoggedIn$ | async" mat-button color="accent"
-          [routerLink]="['/profiles', (currentUser$ | async)?.id]">
-    {{(currentUser$ | async)?.email}}
-  </button>
-  <button *ngIf="isLoggedIn$ | async" mat-button color="accent" (click)="onLogout()">
-    Log Out
-  </button>
-  <button *ngIf="isAnonymous$ | async" mat-button color="accent" [routerLink]="['login']">
-    Sign In
-  </button>
-  <button *ngIf="isAnonymous$ | async" mat-button color="accent" [routerLink]="['register']">
-    Register
-  </button>
+  @if (currentUser$ | async) {
+    <button mat-button color="accent"
+            [routerLink]="['/profiles', (currentUser$ | async)?.id]">
+      {{(currentUser$ | async)?.email}}
+    </button>
+    <button mat-button color="accent" (click)="onLogout()">
+      Log Out
+    </button>
+  }
+  @if (isAnonymous$ | async) {
+    <button mat-button color="accent" [routerLink]="['login']">
+      Sign In
+    </button>
+    <button mat-button color="accent" [routerLink]="['register']">
+      Register
+    </button>
+  }
 </mat-toolbar>

@@ -15,11 +15,6 @@ export const errorSelector = createSelector(
   (authState: AuthStateInterface) => authState.error
 )
 
-export const isLoggedInSelector = createSelector(
-  authFeatureSelector,
-  (authState: AuthStateInterface) => !!authState.currentUser
-)
-
 export const isAnonymousSelector = createSelector(
   authFeatureSelector,
   (authState: AuthStateInterface) => !authState.currentUser

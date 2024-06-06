@@ -4,8 +4,8 @@ import {RouterLink} from "@angular/router";
 import {Observable} from "rxjs";
 import {UserInterface} from "../../types/user.interface";
 import {select, Store} from "@ngrx/store";
-import {currentUserSelector, isAnonymousSelector, isLoggedInSelector} from "../../../auth/store/auth.selectors";
-import {AsyncPipe, NgIf} from "@angular/common";
+import {currentUserSelector, isAnonymousSelector} from "../../../auth/store/auth.selectors";
+import {AsyncPipe} from "@angular/common";
 import {MatButton} from "@angular/material/button";
 import {LogoutActions} from "../../../auth/store/auth.actions";
 
@@ -17,8 +17,7 @@ import {LogoutActions} from "../../../auth/store/auth.actions";
     MatToolbar,
     RouterLink,
     AsyncPipe,
-    MatButton,
-    NgIf
+    MatButton
   ],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
@@ -26,18 +25,15 @@ import {LogoutActions} from "../../../auth/store/auth.actions";
 export class MenuComponent implements OnInit {
   private readonly store: Store = inject(Store);
 
-  isLoggedIn$: Observable<boolean>
   isAnonymous$: Observable<boolean>
   currentUser$: Observable<UserInterface | null>
 
   constructor() {
-    this.isLoggedIn$ = this.store.pipe(select(isLoggedInSelector))
     this.isAnonymous$ = this.store.pipe(select(isAnonymousSelector))
     this.currentUser$ = this.store.pipe(select(currentUserSelector))
   }
 
   ngOnInit(): void {
-    // this.isLoggedIn$ = this.store.pipe(select(isLoggedInSelector))
     // this.isAnonymous$ = this.store.pipe(select(isAnonymousSelector))
     // this.currentUser$ = this.store.pipe(select(currentUserSelector))
   }
