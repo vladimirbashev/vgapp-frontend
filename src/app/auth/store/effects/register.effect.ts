@@ -35,7 +35,7 @@ export class RegisterEffect {
       this.actions$.pipe(
         ofType(registerSuccessAction),
         tap(() => {
-          this.router.navigateByUrl('/login')
+          this.router.navigateByUrl('/auth/login')
         })
       ),
     {dispatch: false, functional: true}

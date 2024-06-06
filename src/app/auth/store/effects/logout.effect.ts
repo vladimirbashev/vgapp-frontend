@@ -30,7 +30,7 @@ export class LogoutEffect {
       this.actions$.pipe(
         ofType(logoutSuccessAction),
         tap(() => {
-          this.router.navigateByUrl('/login')
+          this.router.navigateByUrl('/auth/login')
         })
       ),
     {dispatch: false, functional: true}

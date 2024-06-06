@@ -18,7 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideStore({router: routerReducer}),
     provideState(authFeature),
-    provideEffects(currentUserEffects),
+    provideEffects([currentUserEffects]),
     provideRouterStore(),
     provideStoreDevtools({maxAge: 25, logOnly: !isDevMode()}),
     provideHttpClient(withInterceptors([authInterceptor])),
