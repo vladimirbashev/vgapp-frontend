@@ -1,9 +1,9 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { authInitialState, AuthStateInterface } from './auth.state';
 import {registerAction, registerFailureAction, registerSuccessAction} from "./actions/register.actions";
-import {loginAction, loginFailureAction, loginSuccessAction} from "./actions/login.action";
 import {logoutAction, logoutFailureAction, logoutSuccessAction} from "./actions/logout.action";
 import {CurrentUserActions} from "./actions/currentUser.action";
+import {LoginActions} from "./actions/login.action";
 
 
 export const authFeature = createFeature({
@@ -34,7 +34,7 @@ export const authFeature = createFeature({
       })
     ),
     on(
-      loginAction,
+      LoginActions.login,
       (state): AuthStateInterface => ({
         ...state,
         isSubmitting: true,
@@ -42,14 +42,14 @@ export const authFeature = createFeature({
       })
     ),
     on(
-      loginSuccessAction,
+      LoginActions.success,
       (state, action): AuthStateInterface => ({
         ...state,
         isSubmitting: false,
       })
     ),
     on(
-      loginFailureAction,
+      LoginActions.failure,
       (state, action): AuthStateInterface => ({
         ...state,
         isSubmitting: false,

@@ -1,20 +1,19 @@
-import {createAction, props} from '@ngrx/store'
-import {TokenRequestInterface} from "../../types/tokenRequest.interface";
-import {ActionTypes} from "../actionTypes";
+import {createActionGroup, emptyProps, props} from '@ngrx/store'
 import {TokenResponseInterface} from "../../types/tokenResponseInterface";
+import {TokenRequestInterface} from "../../types/tokenRequest.interface";
 
 
-export const loginAction = createAction(
-  ActionTypes.LOGIN,
-  props<{request: TokenRequestInterface}>()
-)
 
-export const loginSuccessAction = createAction(
-  ActionTypes.LOGIN_SUCCESS,
-  props<{token: TokenResponseInterface}>()
-)
+export const LoginActions = createActionGroup({
+  source: 'Login',
+  events: {
+    // defining an event without payload using the `emptyProps` function
+    'login': props<{request: TokenRequestInterface}>(),
 
-export const loginFailureAction = createAction(
-  ActionTypes.LOGIN_FAILURE,
-  props<{error: any}>()
-)
+    // defining an event with payload using the `props` function
+    'success': props<{token: TokenResponseInterface}>(),
+
+    // defining an event with payload using the props factory
+    'failure':  props<{error: any}>()
+  },
+});
