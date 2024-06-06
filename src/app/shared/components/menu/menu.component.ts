@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {MatToolbar} from "@angular/material/toolbar";
 import {RouterLink} from "@angular/router";
 import {Observable} from "rxjs";
@@ -23,15 +23,18 @@ import {MatButton} from "@angular/material/button";
   styleUrl: './menu.component.css'
 })
 export class MenuComponent implements OnInit {
+  private readonly store: Store = inject(Store);
+
   isLoggedIn$: Observable<boolean>
   isAnonymous$: Observable<boolean>
   currentUser$: Observable<UserInterface | null>
 
-  constructor(private store: Store) {
+  constructor() {
     this.isLoggedIn$ = this.store.pipe(select(isLoggedInSelector))
     this.isAnonymous$ = this.store.pipe(select(isAnonymousSelector))
     this.currentUser$ = this.store.pipe(select(currentUserSelector))
   }
+
   ngOnInit(): void {
     // this.isLoggedIn$ = this.store.pipe(select(isLoggedInSelector))
     // this.isAnonymous$ = this.store.pipe(select(isAnonymousSelector))
