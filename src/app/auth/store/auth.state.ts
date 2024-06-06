@@ -2,17 +2,15 @@ import {UserInterface} from "../../shared/types/user.interface";
 
 
 export interface AuthStateInterface {
-  isSubmitting: boolean
+  loading: boolean
   currentUser: UserInterface | null
-  isLoggedIn: boolean | null
   error: any
 }
 
 export const authInitialState: AuthStateInterface = {
-  isSubmitting: false,
+  loading: false,
   currentUser: null,
-  error: null,
-  isLoggedIn: null
+  error: null
 }
 
 

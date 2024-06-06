@@ -11,7 +11,7 @@ export const authFeature = createFeature({
       RegisterActions.register,
       (state): AuthStateInterface => ({
         ...state,
-        isSubmitting: true,
+        loading: true,
         error: null,
       })
     ),
@@ -19,14 +19,14 @@ export const authFeature = createFeature({
       RegisterActions.success,
       (state, action): AuthStateInterface => ({
         ...state,
-        isSubmitting: false
+        loading: false
       })
     ),
     on(
       RegisterActions.failure,
       (state, action): AuthStateInterface => ({
         ...state,
-        isSubmitting: false,
+        loading: false,
         error: action.error
       })
     ),
@@ -34,7 +34,7 @@ export const authFeature = createFeature({
       LoginActions.login,
       (state): AuthStateInterface => ({
         ...state,
-        isSubmitting: true,
+        loading: true,
         error: null,
       })
     ),
@@ -42,14 +42,14 @@ export const authFeature = createFeature({
       LoginActions.success,
       (state, action): AuthStateInterface => ({
         ...state,
-        isSubmitting: false,
+        loading: false,
       })
     ),
     on(
       LoginActions.failure,
       (state, action): AuthStateInterface => ({
         ...state,
-        isSubmitting: false,
+        loading: false,
         error: action.error
       })
     ),
@@ -57,7 +57,7 @@ export const authFeature = createFeature({
       LogoutActions.logout,
       (state): AuthStateInterface => ({
         ...state,
-        isSubmitting: true,
+        loading: true,
         error: null,
       })
     ),
@@ -65,7 +65,7 @@ export const authFeature = createFeature({
       LogoutActions.success,
       (state, action): AuthStateInterface => ({
         ...state,
-        isSubmitting: false,
+        loading: false,
         error: null,
         currentUser: null
       })
@@ -74,7 +74,7 @@ export const authFeature = createFeature({
       LogoutActions.failure,
       (state, action): AuthStateInterface => ({
         ...state,
-        isSubmitting: false,
+        loading: false,
         error: action.error
       })
     ),
@@ -82,14 +82,14 @@ export const authFeature = createFeature({
       CurrentUserActions.get,
       (state, action): AuthStateInterface => ({
         ...state,
-        isSubmitting: true,
+        loading: true,
       })
     ),
     on(
       CurrentUserActions.success,
       (state, action): AuthStateInterface => ({
         ...state,
-        isSubmitting: false,
+        loading: false,
         currentUser: action.user
       })
     ),
@@ -97,7 +97,7 @@ export const authFeature = createFeature({
       CurrentUserActions.failure,
       (state, action): AuthStateInterface => ({
         ...state,
-        isSubmitting: false,
+        loading: false,
         error: action.error,
       })
     )
