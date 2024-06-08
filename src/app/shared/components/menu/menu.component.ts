@@ -8,6 +8,7 @@ import {currentUserSelector, isAnonymousSelector} from "../../../auth/store/auth
 import {AsyncPipe} from "@angular/common";
 import {MatButton} from "@angular/material/button";
 import {LogoutActions} from "../../../auth/store/auth.actions";
+import {AuthFacade} from "../../../auth/store/auth.facade";
 
 
 @Component({
@@ -22,23 +23,14 @@ import {LogoutActions} from "../../../auth/store/auth.actions";
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
   private readonly store: Store = inject(Store);
+  private readonly authFacade: AuthFacade = inject(AuthFacade);
 
-  isAnonymous$: Observable<boolean>
-  currentUser$: Observable<UserInterface | null>
-
-  constructor() {
-    this.isAnonymous$ = this.store.pipe(select(isAnonymousSelector))
-    this.currentUser$ = this.store.pipe(select(currentUserSelector))
-  }
-
-  ngOnInit(): void {
-    // this.isAnonymous$ = this.store.pipe(select(isAnonymousSelector))
-    // this.currentUser$ = this.store.pipe(select(currentUserSelector))
-  }
+  isAnonymous$: Observable<boolean> = this.authFacade.isAnonymous$;
+  currentUser$: Observable<UserInterface | null> = this.authFacade.currentUser$;
 
   onLogout() {
-    this.store.dispatch(LogoutActions.logout())
+    this.authFacade.logout();
   }
 }

@@ -1,21 +1,22 @@
-// import { inject, Injectable } from '@angular/core';
-// import { Store } from '@ngrx/store';
-// import { Message } from '../../messenger';
-// import { addMessage } from './messages.actions';
-// import { selectMessages } from './messages.selectors';
-// import { Observable } from 'rxjs';
-//
-// @Injectable({ providedIn: 'root' })
-// export class MessagesFacade {
-//   private readonly store: Store = inject(Store);
-//
-//   readonly messages$: Observable<Message[]> = this.store.select(selectMessages);
-//
-//   addMessage(message: Message): void {
-//     this.store.dispatch(addMessage({ message }));
-//   }
-//
-//   deleteOne(id: string): void {
-//     this.store.dispatch(deleteMessage({ id }));
-//   }
-// }
+import { inject, Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import {CurrentUserActions, LogoutActions} from "./auth.actions";
+import {currentUserSelector, isAnonymousSelector} from "./auth.selectors";
+import {UserInterface} from "../../shared/types/user.interface";
+
+@Injectable({ providedIn: 'root' })
+export class AuthFacade {
+  private readonly store: Store = inject(Store);
+
+  readonly isAnonymous$: Observable<boolean> = this.store.select(isAnonymousSelector);
+  readonly currentUser$: Observable<UserInterface | null> = this.store.select(currentUserSelector);
+
+  logout(): void {
+    this.store.dispatch(LogoutActions.logout())
+  }
+
+  currentUser(): void {
+    this.store.dispatch(CurrentUserActions.get())
+  }
+}

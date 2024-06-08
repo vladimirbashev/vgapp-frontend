@@ -1,8 +1,7 @@
 import {Component, inject, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {MenuComponent} from "./shared/components/menu/menu.component";
-import {Store} from "@ngrx/store";
-import {CurrentUserActions} from "./auth/store/auth.actions";
+import {AuthFacade} from "./auth/store/auth.facade";
 
 
 @Component({
@@ -14,9 +13,9 @@ import {CurrentUserActions} from "./auth/store/auth.actions";
 })
 export class AppComponent implements OnInit{
   title = 'vgapp-frontend';
-  private readonly store: Store = inject(Store);
+  private readonly authFacade: AuthFacade = inject(AuthFacade);
 
   ngOnInit(): void {
-    this.store.dispatch(CurrentUserActions.get())
+    this.authFacade.currentUser();
   }
 }
