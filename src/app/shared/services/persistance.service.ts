@@ -8,6 +8,7 @@ export class PersistanceService {
   set(key: string, data: any): void {
     try {
       localStorage.setItem(key, JSON.stringify(data))
+      console.log('Save to localStorage')
     } catch (e) {
       console.error('Error saving to localStorage', e)
     }
@@ -27,7 +28,6 @@ export class PersistanceService {
       if (item) {
         return JSON.parse(item)
       } else {
-        console.error('Error getting data from localStorage')
         return null
       }
     } catch (e) {
