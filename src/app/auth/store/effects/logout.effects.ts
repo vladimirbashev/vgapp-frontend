@@ -25,14 +25,14 @@ export const logout = createEffect(
   { functional: true }
 );
 
-// export const redirectAfterLogout = createEffect(
-//   (actions$ = inject(Actions), router = inject(Router)) => {
-//     return actions$.pipe(
-//       ofType(LogoutActions.success),
-//       tap(() => {
-//         router.navigateByUrl('/login')
-//       })
-//     );
-//   },
-//   { functional: true }
-// );
+export const redirectAfterLogout = createEffect(
+  (actions$ = inject(Actions), router = inject(Router)) => {
+    return actions$.pipe(
+      ofType(LogoutActions.success),
+      tap(() => {
+        router.navigateByUrl('/login')
+      })
+    );
+  },
+  { dispatch: false, functional: true }
+);
