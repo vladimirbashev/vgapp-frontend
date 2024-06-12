@@ -35,7 +35,7 @@ export class LoginComponent {
   private readonly authFacade: AuthFacade = inject(AuthFacade);
   private readonly fb: FormBuilder = inject(FormBuilder);
 
-  isSubmitting$: Observable<boolean> = this.authFacade.isSubmitting$;
+  isLoading$: Observable<boolean> = this.authFacade.isLoading$;
   error$: Observable<string> = this.authFacade.error$;
   form: FormGroup = this.fb.group({
     username: ['', Validators.required],

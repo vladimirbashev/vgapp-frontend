@@ -34,7 +34,7 @@ export class RegisterComponent {
   private readonly authFacade: AuthFacade = inject(AuthFacade);
   private readonly fb: FormBuilder = inject(FormBuilder);
 
-  isSubmitting$: Observable<boolean> = this.authFacade.isSubmitting$;
+  isLoading$: Observable<boolean> = this.authFacade.isLoading$;
   error$: Observable<string> = this.authFacade.error$;
   form: FormGroup = this.fb.group({
     username: ['', Validators.required],
@@ -48,7 +48,7 @@ export class RegisterComponent {
       console.log('submit', this.form.value, this.form.valid);
       const request: RegisterRequestInterface = this.form.value;
       // this.store.dispatch(registerAction({request}));
-      this.authFacade.login(request);
+      this.authFacade.register(request);
     }
   }
 }

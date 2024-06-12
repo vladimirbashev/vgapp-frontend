@@ -32,7 +32,7 @@ export const LogoutActions = createActionGroup({
 });
 
 export const RegisterActions = createActionGroup({
-  source: 'Logout',
+  source: 'Register',
   events: {
     'register': props<{request: RegisterRequestInterface}>(),
     'success':  props<{user: UserInterface}>(),

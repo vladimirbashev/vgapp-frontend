@@ -5,6 +5,7 @@ import {Router} from '@angular/router'
 import {of} from 'rxjs'
 import {AuthService} from "../../services/auth.service";
 import {CurrentUserActions, LogoutActions} from "../auth.actions";
+import {PersistanceService} from "../../../shared/services/persistance.service";
 
 
 export const currentUser = createEffect(
@@ -24,16 +25,25 @@ export const currentUser = createEffect(
   { functional: true }
 );
 
-
 export const currentUserFailure = createEffect(
-  (actions$ = inject(Actions)) => {
+  (actions$ = inject(Actions), persistanceService = inject(PersistanceService)) => {
     return actions$.pipe(
       ofType(CurrentUserActions.failure),
-      map(() => LogoutActions.logout())
+      map(() => persistanceService.remove('accessToken'))
     );
   },
-  { functional: true }
+  { dispatch: false, functional: true }
 );
+
+// export const currentUserFailure = createEffect(
+//   (actions$ = inject(Actions)) => {
+//     return actions$.pipe(
+//       ofType(CurrentUserActions.failure),
+//       map(() => LogoutActions.logout())
+//     );
+//   },
+//   { functional: true }
+// );
 
 export const redirectAfterLoggedIn = createEffect(
   (actions$ = inject(Actions), router = inject(Router)) => {
