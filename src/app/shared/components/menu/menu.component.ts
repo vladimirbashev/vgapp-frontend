@@ -21,7 +21,7 @@ import {AuthFacade} from "../../../auth/store/auth.facade";
     MatButton
   ],
   templateUrl: './menu.component.html',
-  styleUrl: './menu.component.css'
+  styleUrl: './menu.component.scss'
 })
 export class MenuComponent {
   private readonly store: Store = inject(Store);

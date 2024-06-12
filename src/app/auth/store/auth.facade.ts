@@ -1,9 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import {CurrentUserActions, LogoutActions} from "./auth.actions";
-import {currentUserSelector, isAnonymousSelector} from "./auth.selectors";
+import {CurrentUserActions, LoginActions, LogoutActions, RegisterActions} from "./auth.actions";
+import {currentUserSelector, errorSelector, isAnonymousSelector, isSubmittingSelector} from "./auth.selectors";
 import {UserInterface} from "../../shared/types/user.interface";
+import {TokenRequestInterface} from "../types/tokenRequest.interface";
+import {RegisterRequestInterface} from "../types/registerRequest.interface";
 
 @Injectable({ providedIn: 'root' })
 export class AuthFacade {
@@ -11,6 +13,8 @@ export class AuthFacade {
 
   readonly isAnonymous$: Observable<boolean> = this.store.select(isAnonymousSelector);
   readonly currentUser$: Observable<UserInterface | null> = this.store.select(currentUserSelector);
+  readonly isSubmitting$: Observable<boolean> = this.store.select(isSubmittingSelector);
+  readonly error$: Observable<any> = this.store.select(errorSelector);
 
   logout(): void {
     this.store.dispatch(LogoutActions.logout())
@@ -18,5 +22,13 @@ export class AuthFacade {
 
   currentUser(): void {
     this.store.dispatch(CurrentUserActions.get())
+  }
+
+  login(request: TokenRequestInterface): void {
+    this.store.dispatch(LoginActions.login({request}));
+  }
+
+  register(request: RegisterRequestInterface): void {
+    this.store.dispatch(RegisterActions.register({request}))
   }
 }

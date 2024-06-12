@@ -1,0 +1,11 @@
+@import "_variables";
+
+.error-message {
+  background: $warn;
+  color: $warn-contrast;
+  border-radius: 3px;
+  padding: 10px;
+  margin: 10px;
+  min-width: 200px;
+  text-align: center;
+}
