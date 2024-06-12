@@ -5,7 +5,6 @@ import {Router} from '@angular/router'
 import {of} from 'rxjs'
 import {AuthService} from "../../services/auth.service";
 import {CurrentUserActions, LogoutActions} from "../auth.actions";
-import {PersistanceService} from "../../../shared/services/persistance.service";
 
 
 export const currentUser = createEffect(
