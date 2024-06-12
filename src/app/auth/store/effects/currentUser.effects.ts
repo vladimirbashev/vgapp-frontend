@@ -26,24 +26,14 @@ export const currentUser = createEffect(
 );
 
 export const currentUserFailure = createEffect(
-  (actions$ = inject(Actions), persistanceService = inject(PersistanceService)) => {
+  (actions$ = inject(Actions)) => {
     return actions$.pipe(
       ofType(CurrentUserActions.failure),
-      map(() => persistanceService.remove('accessToken'))
+      map(() => LogoutActions.logout())
     );
   },
-  { dispatch: false, functional: true }
+  { functional: true }
 );
-
-// export const currentUserFailure = createEffect(
-//   (actions$ = inject(Actions)) => {
-//     return actions$.pipe(
-//       ofType(CurrentUserActions.failure),
-//       map(() => LogoutActions.logout())
-//     );
-//   },
-//   { functional: true }
-// );
 
 export const redirectAfterLoggedIn = createEffect(
   (actions$ = inject(Actions), router = inject(Router)) => {
