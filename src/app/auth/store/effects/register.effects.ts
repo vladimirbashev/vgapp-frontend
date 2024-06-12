@@ -36,7 +36,7 @@ export const redirectAfterRegister = createEffect(
     return actions$.pipe(
       ofType(RegisterActions.success),
       tap(() => {
-        router.navigateByUrl('=/login')
+        router.navigateByUrl('/login')
       })
     );
   },
