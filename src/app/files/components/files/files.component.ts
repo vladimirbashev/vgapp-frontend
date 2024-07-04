@@ -4,7 +4,7 @@ import {ErrorMessageComponent} from "../../../shared/components/error-message/er
 import {Destroyer} from "../../../shared/components/base";
 import {FilesFacade} from "../../store/files.facade";
 import {Observable} from "rxjs";
-import {FilesType} from "../../types/files.interface";
+import {FilesType} from "../../types/filesResponseInterface";
 import {AsyncPipe} from "@angular/common";
 import {MatCardModule} from "@angular/material/card";
 import {RouterLink} from "@angular/router";

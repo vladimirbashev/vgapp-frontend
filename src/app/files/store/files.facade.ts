@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {FilesActions} from "./files.actions";
 import {Observable} from "rxjs";
-import {FilesType} from "../types/files.interface";
+import {FilesType} from "../types/filesResponseInterface";
 import {errorSelector, filesCountSelector, filesSelector, isLoadingSelector} from "./files.selectors";
 
 

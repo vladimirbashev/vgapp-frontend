@@ -11,29 +11,31 @@
                  (page)="handlePageEvent($event)"
                  aria-label="Select page">
   </mat-paginator>
-  <div *ngIf="!(isLoading$ | async)">
-    <mat-card *ngFor="let file of (files$ | async)">
-      <mat-card-header>
-        <mat-card-title>{{ file.title }}</mat-card-title>
-        <mat-card-subtitle>
-          <!--        <button type="button" mat-button color="accent" [routerLink]="['/profiles', article.author.username]">-->
-          <!--          <img [src]="article.author.image" />-->
-          <!--        </button>-->
-          <button type="button" color="primary" mat-button [routerLink]="['/profiles', file.user.username]">
-            {{ file.user.email }}
-          </button>
-        </mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        {{ file.description }}
-      </mat-card-content>
-      <mat-card-actions>
-        <button type="button" color="primary" mat-button>add to favorites</button>
-      </mat-card-actions>
-      <mat-card-footer>
-        <span class="date">{{file.createdate}}</span>
-      </mat-card-footer>
-    </mat-card>
-  </div>
+  @if (!(isLoading$ | async)) {
+    @for (file of (files$ | async); track file.id) {
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ file.path }}</mat-card-title>
+          <mat-card-subtitle>
+            <!--        <button type="button" mat-button color="accent" [routerLink]="['/profiles', article.author.username]">-->
+            <!--          <img [src]="article.author.image" />-->
+            <!--        </button>-->
+            <button type="button" color="primary" mat-button [routerLink]="['/profiles', file.user.username]">
+              {{ file.user.email }}
+            </button>
+          </mat-card-subtitle>
+        </mat-card-header>
+<!--        <mat-card-content>-->
+<!--          {{ file.description }}-->
+<!--        </mat-card-content>-->
+        <mat-card-actions>
+          <button type="button" color="primary" mat-button>add to favorites</button>
+        </mat-card-actions>
+        <mat-card-footer>
+          <span class="date">{{file.createdate}}</span>
+        </mat-card-footer>
+      </mat-card>
+    }
+  }
 </div>
 

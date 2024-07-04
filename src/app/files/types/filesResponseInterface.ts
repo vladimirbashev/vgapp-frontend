@@ -11,7 +11,7 @@ export interface FileInterface {
 export type FileType = FileInterface | null;
 export type FilesType = FileInterface[] | null;
 
-export interface FilesInterface {
+export interface FilesResponseInterface {
   items: FileInterface[]
   count: number
 }

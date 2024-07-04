@@ -1,5 +1,5 @@
 import {ErrorType} from "../../shared/types/error.interface";
-import {FilesType} from "../types/files.interface";
+import {FilesType} from "../types/filesResponseInterface";
 
 
 export interface FilesStateInterface {
