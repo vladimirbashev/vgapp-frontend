@@ -1,9 +1,9 @@
 import {inject} from "@angular/core";
 import {Actions, createEffect, ofType} from '@ngrx/effects'
-import {FilesActions} from "../files.actions";
 import {catchError, map, switchMap} from "rxjs/operators";
 import {of} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
+import {FilesActions} from "../files.actions";
 import {FilesService} from "../../services/files.service";
 
 

@@ -14,8 +14,7 @@ import * as currentUserEffects from './auth/store/effects/currentUser.effects';
 import * as loginEffects from './auth/store/effects/login.effects';
 import * as logoutEffects from './auth/store/effects/logout.effects';
 import * as registerEffects from './auth/store/effects/register.effects';
-import * as filesEffects from './files/store/effects/files.effects';
-import {filesFeature} from "./files/store/files.reducers";
+
 
 
 export const appConfig: ApplicationConfig = {
@@ -23,9 +22,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimationsAsync(),
     provideStore({router: routerReducer}),
-    provideState(filesFeature),
     provideState(authFeature),
-    provideEffects([currentUserEffects, loginEffects, logoutEffects, registerEffects, filesEffects]),
+    provideEffects([currentUserEffects, loginEffects, logoutEffects, registerEffects]),
     provideRouterStore(),
     provideStoreDevtools({maxAge: 25, logOnly: !isDevMode()}),
     provideHttpClient(withInterceptors([authInterceptor])),
