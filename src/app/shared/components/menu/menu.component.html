@@ -4,8 +4,8 @@
     Home
   </button>
   @if (currentUser$ | async) {
-    <button mat-button color="accent" [routerLink]="['articles', 'new']">
-      New Post
+    <button mat-button color="accent" [routerLink]="['files']">
+      Files
     </button>
   }
   <span class="flexExpand"></span>

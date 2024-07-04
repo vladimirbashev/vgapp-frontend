@@ -1,0 +1,39 @@
+@if (isLoading$ | async) {
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+
+<app-error-message [value]="error$"></app-error-message>
+
+<div fxLayout="column" fxLayoutAlign="space-around center">
+  <mat-paginator [length]="filesCount$ | async"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 25, 100]"
+                 (page)="handlePageEvent($event)"
+                 aria-label="Select page">
+  </mat-paginator>
+  <div *ngIf="!(isLoading$ | async)">
+    <mat-card *ngFor="let file of (files$ | async)">
+      <mat-card-header>
+        <mat-card-title>{{ file.title }}</mat-card-title>
+        <mat-card-subtitle>
+          <!--        <button type="button" mat-button color="accent" [routerLink]="['/profiles', article.author.username]">-->
+          <!--          <img [src]="article.author.image" />-->
+          <!--        </button>-->
+          <button type="button" color="primary" mat-button [routerLink]="['/profiles', file.user.username]">
+            {{ file.user.email }}
+          </button>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        {{ file.description }}
+      </mat-card-content>
+      <mat-card-actions>
+        <button type="button" color="primary" mat-button>add to favorites</button>
+      </mat-card-actions>
+      <mat-card-footer>
+        <span class="date">{{file.createdate}}</span>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>
+

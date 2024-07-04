@@ -11,7 +11,6 @@ import {MatButton} from "@angular/material/button";
 import {AsyncPipe} from "@angular/common";
 import {FlexLayoutModule} from "@ngbracket/ngx-layout";
 import {MatProgressBar} from "@angular/material/progress-bar";
-import {tap} from "rxjs/operators";
 import {Destroyer} from "../../../shared/components/base";
 
 @Component({
