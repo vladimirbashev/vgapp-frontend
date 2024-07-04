@@ -1,7 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
+import {Observable, takeUntil} from "rxjs";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {Store} from "@ngrx/store";
 import {AuthFacade} from "../../store/auth.facade";
 import {RegisterRequestInterface} from "../../types/registerRequest.interface";
 import {ErrorMessageComponent} from "../../../shared/components/error-message/error-message.component";
@@ -12,6 +11,7 @@ import {MatInput} from "@angular/material/input";
 import {AsyncPipe} from "@angular/common";
 import {FlexLayoutModule} from "@ngbracket/ngx-layout";
 import {MatProgressBar} from "@angular/material/progress-bar";
+import {Destroyer} from "../../../shared/components/base";
 
 @Component({
   selector: 'app-register',
@@ -31,7 +31,7 @@ import {MatProgressBar} from "@angular/material/progress-bar";
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent implements OnInit{
+export class RegisterComponent extends Destroyer  implements OnInit {
   private readonly authFacade: AuthFacade = inject(AuthFacade);
   private readonly fb: FormBuilder = inject(FormBuilder);
 
@@ -44,15 +44,16 @@ export class RegisterComponent implements OnInit{
   })
 
   ngOnInit(): void {
-    console.log('test')
-    this.isLoading$.subscribe((value) => {
-      console.log(value)
-      if (value){
-        this.form.disable();
-      } else {
-        this.form.enable();
-      }
-    });
+    this.isLoading$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((value) => {
+        console.log(value)
+        if (value){
+          this.form.disable();
+        } else {
+          this.form.enable();
+        }
+      });
   }
 
   onSubmit(): void {

@@ -1,8 +1,7 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {Store} from "@ngrx/store";
 import {AuthFacade} from "../../store/auth.facade";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {Observable} from "rxjs";
+import {Observable, takeUntil} from "rxjs";
 import {TokenRequestInterface} from "../../types/tokenRequest.interface";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {ErrorMessageComponent} from "../../../shared/components/error-message/error-message.component";
@@ -13,6 +12,7 @@ import {AsyncPipe} from "@angular/common";
 import {FlexLayoutModule} from "@ngbracket/ngx-layout";
 import {MatProgressBar} from "@angular/material/progress-bar";
 import {tap} from "rxjs/operators";
+import {Destroyer} from "../../../shared/components/base";
 
 @Component({
   selector: 'app-login',
@@ -33,7 +33,7 @@ import {tap} from "rxjs/operators";
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent extends Destroyer implements OnInit {
   private readonly authFacade: AuthFacade = inject(AuthFacade);
   private readonly fb: FormBuilder = inject(FormBuilder);
 
@@ -46,14 +46,16 @@ export class LoginComponent implements OnInit{
 
   ngOnInit(): void {
     console.log('test')
-    this.isLoading$.subscribe((value) => {
-      console.log(value)
-      if (value){
-        this.form.disable();
-      } else {
-        this.form.enable();
-      }
-    });
+    this.isLoading$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((value) => {
+        console.log(value)
+        if (value){
+          this.form.disable();
+        } else {
+          this.form.enable();
+        }
+      });
   }
 
   onSubmit(): void {
