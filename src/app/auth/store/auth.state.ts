@@ -1,4 +1,4 @@
-import {UserInterface, UserType} from "../../shared/types/user.interface";
+import {UserType} from "../../shared/types/user.interface";
 import {ErrorType} from "../../shared/types/error.interface";
 
 

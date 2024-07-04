@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import {CurrentUserActions, LoginActions, LogoutActions, RegisterActions} from "./auth.actions";
 import {currentUserSelector, errorSelector, isAnonymousSelector, isLoadingSelector} from "./auth.selectors";
-import {UserInterface, UserType} from "../../shared/types/user.interface";
+import {UserType} from "../../shared/types/user.interface";
 import {TokenRequestInterface} from "../types/tokenRequest.interface";
 import {RegisterRequestInterface} from "../types/registerRequest.interface";
 

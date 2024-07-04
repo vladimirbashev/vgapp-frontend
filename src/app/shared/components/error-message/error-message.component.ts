@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {AsyncPipe} from "@angular/common";
-import {ErrorInterface, ErrorType} from "../../types/error.interface";
+import {ErrorType} from "../../types/error.interface";
 
 @Component({
   selector: 'app-error-message',
