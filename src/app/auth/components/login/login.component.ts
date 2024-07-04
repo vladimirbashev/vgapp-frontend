@@ -45,11 +45,9 @@ export class LoginComponent extends Destroyer implements OnInit {
   })
 
   ngOnInit(): void {
-    console.log('test')
     this.isLoading$
       .pipe(takeUntil(this.destroy$))
       .subscribe((value) => {
-        console.log(value)
         if (value){
           this.form.disable();
         } else {

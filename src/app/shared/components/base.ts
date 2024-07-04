@@ -1,6 +1,10 @@
 import {Subject} from "rxjs";
-import {OnDestroy} from "@angular/core";
+import {Component, OnDestroy} from "@angular/core";
 
+@Component({
+  standalone: true,
+  template: ''
+})
 export class Destroyer implements OnDestroy {
   destroy$: Subject<boolean> = new Subject<boolean>();
 

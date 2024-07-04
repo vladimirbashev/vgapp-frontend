@@ -47,7 +47,6 @@ export class RegisterComponent extends Destroyer  implements OnInit {
     this.isLoading$
       .pipe(takeUntil(this.destroy$))
       .subscribe((value) => {
-        console.log(value)
         if (value){
           this.form.disable();
         } else {
