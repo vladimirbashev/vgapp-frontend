@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {AuthFacade} from "../../store/auth.facade";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
@@ -11,6 +11,8 @@ import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
 import {AsyncPipe} from "@angular/common";
 import {FlexLayoutModule} from "@ngbracket/ngx-layout";
+import {MatProgressBar} from "@angular/material/progress-bar";
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-login',
@@ -25,13 +27,13 @@ import {FlexLayoutModule} from "@ngbracket/ngx-layout";
     MatButton,
     AsyncPipe,
     MatLabel,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatProgressBar
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
-  private readonly store: Store = inject(Store);
+export class LoginComponent implements OnInit{
   private readonly authFacade: AuthFacade = inject(AuthFacade);
   private readonly fb: FormBuilder = inject(FormBuilder);
 
@@ -41,6 +43,18 @@ export class LoginComponent {
     username: ['', Validators.required],
     password: ['', Validators.required]
   })
+
+  ngOnInit(): void {
+    console.log('test')
+    this.isLoading$.subscribe((value) => {
+      console.log(value)
+      if (value){
+        this.form.disable();
+      } else {
+        this.form.enable();
+      }
+    });
+  }
 
   onSubmit(): void {
     const request: TokenRequestInterface = this.form.value;

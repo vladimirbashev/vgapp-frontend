@@ -1,3 +1,6 @@
+@if (isLoading$ | async) {
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div fxLayout="column" fxLayoutAlign="space-around center">
     <h1>Sign In</h1>

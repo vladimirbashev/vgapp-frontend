@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Store} from "@ngrx/store";
@@ -11,26 +11,27 @@ import {MatButton} from "@angular/material/button";
 import {MatInput} from "@angular/material/input";
 import {AsyncPipe} from "@angular/common";
 import {FlexLayoutModule} from "@ngbracket/ngx-layout";
+import {MatProgressBar} from "@angular/material/progress-bar";
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    ErrorMessageComponent,
-    MatFormField,
-    RouterLink,
-    MatButton,
-    MatInput,
-    AsyncPipe,
-    MatLabel,
-    FlexLayoutModule
-  ],
+    imports: [
+        ReactiveFormsModule,
+        ErrorMessageComponent,
+        MatFormField,
+        RouterLink,
+        MatButton,
+        MatInput,
+        AsyncPipe,
+        MatLabel,
+        FlexLayoutModule,
+        MatProgressBar
+    ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent {
-  private readonly store: Store = inject(Store);
+export class RegisterComponent implements OnInit{
   private readonly authFacade: AuthFacade = inject(AuthFacade);
   private readonly fb: FormBuilder = inject(FormBuilder);
 
@@ -42,6 +43,17 @@ export class RegisterComponent {
     password: ['', Validators.required]
   })
 
+  ngOnInit(): void {
+    console.log('test')
+    this.isLoading$.subscribe((value) => {
+      console.log(value)
+      if (value){
+        this.form.disable();
+      } else {
+        this.form.enable();
+      }
+    });
+  }
 
   onSubmit(): void {
     if (this.form.valid) {
