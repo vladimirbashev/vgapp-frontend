@@ -3,6 +3,7 @@ import {UserInterface} from "../../shared/types/user.interface";
 import {TokenRequestInterface} from "../types/tokenRequest.interface";
 import {TokenResponseInterface} from "../types/tokenResponseInterface";
 import {RegisterRequestInterface} from "../types/registerRequest.interface";
+import {ErrorType} from "../../shared/types/error.interface";
 
 export const CurrentUserActions = createActionGroup({
   source: 'Current User',
@@ -18,7 +19,7 @@ export const LoginActions = createActionGroup({
   events: {
     'login': props<{request: TokenRequestInterface}>(),
     'success': props<{token: TokenResponseInterface}>(),
-    'failure':  props<{error: any}>()
+    'failure':  props<{error: ErrorType}>()
   },
 });
 
@@ -27,7 +28,7 @@ export const LogoutActions = createActionGroup({
   events: {
     'logout': emptyProps(),
     'success': emptyProps(),
-    'failure':  props<{error: any}>()
+    'failure':  props<{error: ErrorType}>()
   },
 });
 
@@ -36,6 +37,6 @@ export const RegisterActions = createActionGroup({
   events: {
     'register': props<{request: RegisterRequestInterface}>(),
     'success':  props<{user: UserInterface}>(),
-    'failure':  props<{error: any}>()
+    'failure':  props<{error: ErrorType}>()
   },
 });

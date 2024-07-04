@@ -5,3 +5,5 @@ export interface UserInterface {
   updatedate: string
   username: string
 }
+
+export type UserType = UserInterface | null

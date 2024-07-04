@@ -1,10 +1,11 @@
-import {UserInterface} from "../../shared/types/user.interface";
+import {UserInterface, UserType} from "../../shared/types/user.interface";
+import {ErrorType} from "../../shared/types/error.interface";
 
 
 export interface AuthStateInterface {
   loading: boolean
-  currentUser: UserInterface | null
-  error: any
+  currentUser: UserType
+  error: ErrorType
 }
 
 export const authInitialState: AuthStateInterface = {

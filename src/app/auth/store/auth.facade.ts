@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import {CurrentUserActions, LoginActions, LogoutActions, RegisterActions} from "./auth.actions";
 import {currentUserSelector, errorSelector, isAnonymousSelector, isLoadingSelector} from "./auth.selectors";
-import {UserInterface} from "../../shared/types/user.interface";
+import {UserInterface, UserType} from "../../shared/types/user.interface";
 import {TokenRequestInterface} from "../types/tokenRequest.interface";
 import {RegisterRequestInterface} from "../types/registerRequest.interface";
 
@@ -12,7 +12,7 @@ export class AuthFacade {
   private readonly store: Store = inject(Store);
 
   readonly isAnonymous$: Observable<boolean> = this.store.select(isAnonymousSelector);
-  readonly currentUser$: Observable<UserInterface | null> = this.store.select(currentUserSelector);
+  readonly currentUser$: Observable<UserType> = this.store.select(currentUserSelector);
   readonly isLoading$: Observable<boolean> = this.store.select(isLoadingSelector);
   readonly error$: Observable<any> = this.store.select(errorSelector);
 
