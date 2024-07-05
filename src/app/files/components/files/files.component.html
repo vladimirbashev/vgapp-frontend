@@ -1,7 +1,7 @@
 @if (isLoading$ | async) {
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 } @else {
-  <div fxLayout="column" fxLayoutAlign="space=around" fxLayoutGap="20px" class="container">
+  <div fxLayout="column" fxLayoutAlign="space-around" fxLayoutGap="20px" class="container">
     <div fxLayout="row" fxLayoutAlign="center">
       <app-error-message [value]="error$"></app-error-message>
     </div>
@@ -15,7 +15,7 @@
              (change)="onFileSelected($event)">
     </div>
     <section class="files-container mat-elevation-z8" tabindex="0">
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
         <!-- Position Column -->
         <ng-container matColumnDef="path">
           <th mat-header-cell *matHeaderCellDef> path </th>
