@@ -10,7 +10,7 @@ import {FilesResponseInterface} from "../types/filesResponseInterface";
 export class FilesService {
   constructor(private http: HttpClient) {}
 
-  get(user_id: number, skip: number, limit: number): Observable<FilesResponseInterface> {
+  get(user_id: number | string, skip: number, limit: number): Observable<FilesResponseInterface> {
     const params = new HttpParams().set('skip', skip).set('limit', limit);
 
     // const url = environment.apiUrl + '/users/'

@@ -12,6 +12,7 @@ import {MatProgressBar} from "@angular/material/progress-bar";
 import {FlexLayoutModule} from "@ngbracket/ngx-layout";
 import {MatButton} from "@angular/material/button";
 
+
 @Component({
   selector: 'app-files',
   standalone: true,
@@ -37,10 +38,10 @@ export class FilesComponent extends Destroyer implements OnInit{
   files$: Observable<FilesType> = this.filesFacade.files$;
 
   ngOnInit(): void {
-    this.filesFacade.get(8, 0, 10);
+    this.filesFacade.get('me', 0, 10);
   }
 
   handlePageEvent(e: PageEvent) {
-    this.filesFacade.get(8, e.pageIndex *  e.pageSize, e.pageSize);
+    this.filesFacade.get('me', e.pageIndex *  e.pageSize, e.pageSize);
   }
 }

@@ -15,7 +15,7 @@ export class FilesFacade {
   readonly isLoading$: Observable<boolean> = this.store.select(isLoadingSelector);
   readonly error$: Observable<any> = this.store.select(errorSelector);
 
-  get(user_id: number, skip: number, limit: number): void {
+  get(user_id: number | string, skip: number, limit: number): void {
     this.store.dispatch(FilesActions.get({user_id, skip, limit}))
   }
 }
