@@ -3,7 +3,7 @@ import {FileInterface, FilesResponseInterface} from "../types/filesResponseInter
 
 
 export const FilesGetActions = createActionGroup({
-  source: 'Files',
+  source: 'Files Get',
   events: {
     'get': props<{user_id: number | string, skip: number, limit: number}>(),
     'success': props<{files: FilesResponseInterface}>(),
@@ -12,7 +12,7 @@ export const FilesGetActions = createActionGroup({
 });
 
 export const FilesPostActions = createActionGroup({
-  source: 'Files',
+  source: 'Files Post',
   events: {
     'post': props<{postFile: any}>(),
     'success': props<{file: FileInterface}>(),
