@@ -67,12 +67,14 @@ export const filesFeature = createFeature({
     ),
     on(
       FilesDeleteActions.success,
-      (state, action): FilesStateInterface => ({
-        ...state,
-        data: state.data,
-        count: state.count - 1,
-        loading: false,
-      })
+      (state, action): FilesStateInterface => {
+        return {
+          ...state,
+          data: state.data ? state.data.filter(file => file.id !== action.file.id) : [],
+          count: state.count - 1,
+          loading: false,
+        }
+      }
     ),
     on(
       FilesDeleteActions.failure,

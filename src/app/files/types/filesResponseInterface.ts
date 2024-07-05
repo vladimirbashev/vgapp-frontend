@@ -17,5 +17,5 @@ export interface FilesResponseInterface {
 }
 
 export interface FileDeleteResponseInterface {
-  file_id: number
+  id: number
 }
