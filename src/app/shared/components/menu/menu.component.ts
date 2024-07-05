@@ -22,8 +22,6 @@ import {AuthFacade} from "../../../auth/store/auth.facade";
 })
 export class MenuComponent {
   private readonly authFacade: AuthFacade = inject(AuthFacade);
-
-  isAnonymous$: Observable<boolean> = this.authFacade.isAnonymous$;
   currentUser$: Observable<UserType> = this.authFacade.currentUser$;
 
   onLogout() {

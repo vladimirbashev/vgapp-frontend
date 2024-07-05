@@ -17,8 +17,7 @@
     <button mat-button color="accent" (click)="onLogout()">
       Log Out
     </button>
-  }
-  @if (isAnonymous$ | async) {
+  } @else {
     <button mat-button color="accent" [routerLink]="['login']">
       Sign In
     </button>

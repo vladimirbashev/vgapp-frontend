@@ -1,6 +1,7 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store'
 import {AuthStateInterface} from "./auth.state";
 
+
 export const authFeatureSelector = createFeatureSelector<
   AuthStateInterface
 >('auth')
@@ -13,11 +14,6 @@ export const isLoadingSelector = createSelector(
 export const errorSelector = createSelector(
   authFeatureSelector,
   (authState: AuthStateInterface) => authState.error
-)
-
-export const isAnonymousSelector = createSelector(
-  authFeatureSelector,
-  (authState: AuthStateInterface) => !authState.currentUser
 )
 
 export const currentUserSelector = createSelector(

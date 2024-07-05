@@ -1,12 +1,27 @@
 @import "_variables";
 
-mat-card{
-  width: 600px;
-  margin: 10px 0;
-  padding: 5px;
-  background-color: whitesmoke;
+.files-table {
+  width: 600px;;
 }
 
-.date{
-  color: gray;
+.mat-column-path {
+  width: 32px;
+  border-right: 1px solid currentColor;
+  padding-right: 24px;
+  text-align: center;
 }
+
+//.mat-column-name {
+//  padding-left: 16px;
+//  font-size: 20px;
+//}
+//
+//.mat-column-files-weight {
+//  font-style: italic;
+//}
+//
+//.mat-column-symbol {
+//  width: 32px;
+//  text-align: center;
+//  font-weight: bold;
+//}

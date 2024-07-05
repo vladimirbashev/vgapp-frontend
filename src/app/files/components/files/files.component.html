@@ -4,38 +4,26 @@
 
 <app-error-message [value]="error$"></app-error-message>
 
-<div fxLayout="column" fxLayoutAlign="space-around center">
+@if (!(isLoading$ | async)) {
+  <table mat-table [dataSource]="dataSource " class="mat-elevation-z8 files-table">
+    <!-- Position Column -->
+    <ng-container matColumnDef="path">
+      <th mat-header-cell *matHeaderCellDef> path </th>
+      <td mat-cell *matCellDef="let element"> {{element.path}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> path </th>
+      <td mat-cell *matCellDef="let element"> N/A </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
   <mat-paginator [length]="filesCount$ | async"
                  [pageSize]="10"
                  [pageSizeOptions]="[5, 10, 25, 100]"
                  (page)="handlePageEvent($event)"
                  aria-label="Select page">
   </mat-paginator>
-  @if (!(isLoading$ | async)) {
-    @for (file of (files$ | async); track file.id) {
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>{{ file.path }}</mat-card-title>
-          <mat-card-subtitle>
-            <!--        <button type="button" mat-button color="accent" [routerLink]="['/profiles', article.author.username]">-->
-            <!--          <img [src]="article.author.image" />-->
-            <!--        </button>-->
-            <button type="button" color="primary" mat-button [routerLink]="['/profiles', file.user.username]">
-              {{ file.user.email }}
-            </button>
-          </mat-card-subtitle>
-        </mat-card-header>
-<!--        <mat-card-content>-->
-<!--          {{ file.description }}-->
-<!--        </mat-card-content>-->
-        <mat-card-actions>
-          <button type="button" color="primary" mat-button>add to favorites</button>
-        </mat-card-actions>
-        <mat-card-footer>
-          <span class="date">{{file.createdate}}</span>
-        </mat-card-footer>
-      </mat-card>
-    }
-  }
-</div>
-
+}
