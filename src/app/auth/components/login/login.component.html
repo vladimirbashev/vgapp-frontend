@@ -2,7 +2,7 @@
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 }
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div fxLayout="column" fxLayoutAlign="space-around center">
+  <div fxLayout="column" fxLayoutAlign="space-around center" class="container">
     <h1>Sign In</h1>
     <button type="button" mat-button color="primary" [routerLink]="['/register']" (keydown.enter)="$event.preventDefault()">
       Need an account?

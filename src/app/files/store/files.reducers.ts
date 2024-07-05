@@ -1,6 +1,6 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import {filesInitialState, FilesStateInterface} from "./files.state";
-import {FilesActions} from "./files.actions";
+import {FilesGetActions} from "./filesActions";
 
 
 export const filesFeature = createFeature({
@@ -8,7 +8,7 @@ export const filesFeature = createFeature({
   reducer: createReducer(
     filesInitialState,
     on(
-      FilesActions.get,
+      FilesGetActions.get,
       (state): FilesStateInterface => ({
         ...state,
         loading: true,
@@ -16,7 +16,7 @@ export const filesFeature = createFeature({
       })
     ),
     on(
-      FilesActions.success,
+      FilesGetActions.success,
       (state, action): FilesStateInterface => ({
         ...state,
         data: action.files.items,
@@ -25,7 +25,7 @@ export const filesFeature = createFeature({
       })
     ),
     on(
-      FilesActions.failure,
+      FilesGetActions.failure,
       (state, action): FilesStateInterface => ({
         ...state,
         data: null,

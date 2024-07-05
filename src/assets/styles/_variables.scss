@@ -13,3 +13,6 @@ $accent-contrast: mat.get-color-from-palette($my-accent, 'default-contrast');
 $warn: mat.get-color-from-palette($my-warn, default);
 $warn-contrast: mat.get-color-from-palette($my-warn, 'default-contrast');
 
+.container {
+  margin: 20px 20%
+}

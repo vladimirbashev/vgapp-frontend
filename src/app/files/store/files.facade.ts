@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import {FilesActions} from "./files.actions";
+import {FilesGetActions, FilesPostActions} from "./filesActions";
 import {Observable} from "rxjs";
 import {FilesType} from "../types/filesResponseInterface";
 import {errorSelector, filesCountSelector, filesSelector, isLoadingSelector} from "./files.selectors";
@@ -16,6 +16,10 @@ export class FilesFacade {
   readonly error$: Observable<any> = this.store.select(errorSelector);
 
   get(user_id: number | string, skip: number, limit: number): void {
-    this.store.dispatch(FilesActions.get({user_id, skip, limit}))
+    this.store.dispatch(FilesGetActions.get({user_id, skip, limit}))
+  }
+
+  post(postFile: any): void {
+    this.store.dispatch(FilesPostActions.post({postFile}))
   }
 }
