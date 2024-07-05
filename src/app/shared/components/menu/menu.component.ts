@@ -2,7 +2,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {MatToolbar} from "@angular/material/toolbar";
 import {RouterLink} from "@angular/router";
 import {Observable} from "rxjs";
-import {UserType} from "../../types/user.interface";
+import {UserNullableType} from "../../types/user.interface";
 import {AsyncPipe} from "@angular/common";
 import {MatButton} from "@angular/material/button";
 import {AuthFacade} from "../../../auth/store/auth.facade";
@@ -22,7 +22,7 @@ import {AuthFacade} from "../../../auth/store/auth.facade";
 })
 export class MenuComponent {
   private readonly authFacade: AuthFacade = inject(AuthFacade);
-  currentUser$: Observable<UserType> = this.authFacade.currentUser$;
+  currentUser$: Observable<UserNullableType> = this.authFacade.currentUser$;
 
   onLogout() {
     this.authFacade.logout();

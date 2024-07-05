@@ -6,4 +6,5 @@ export interface UserInterface {
   username: string
 }
 
-export type UserType = UserInterface | null
+export type UserNullableType = UserInterface | null
+export type UserType = UserInterface

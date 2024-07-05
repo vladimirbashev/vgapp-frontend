@@ -1,4 +1,4 @@
-import {ErrorType} from "../../shared/types/error.interface";
+import {ErrorNullableType} from "../../shared/types/error.interface";
 import {FilesType} from "../types/filesResponseInterface";
 
 
@@ -6,7 +6,7 @@ export interface FilesStateInterface {
   data: FilesType,
   count: number,
   loading: boolean,
-  error: ErrorType
+  error: ErrorNullableType
 }
 
 export const filesInitialState: FilesStateInterface = {

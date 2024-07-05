@@ -1,5 +1,6 @@
 import {createActionGroup, emptyProps, props} from "@ngrx/store";
-import {FileInterface, FilesResponseInterface} from "../types/filesResponseInterface";
+import {FileDeleteResponseInterface, FileInterface, FilesResponseInterface} from "../types/filesResponseInterface";
+import {ErrorInterface, ErrorType} from "../../shared/types/error.interface";
 
 
 export const FilesGetActions = createActionGroup({
@@ -7,7 +8,7 @@ export const FilesGetActions = createActionGroup({
   events: {
     'get': props<{user_id: number | string, skip: number, limit: number}>(),
     'success': props<{files: FilesResponseInterface}>(),
-    'failure': (error: any) => ({ error }),
+    'failure': (error: ErrorType) => ({ error }),
   },
 });
 
@@ -16,7 +17,16 @@ export const FilesPostActions = createActionGroup({
   events: {
     'post': props<{postFile: any}>(),
     'success': props<{file: FileInterface}>(),
-    'failure': (error: any) => ({ error }),
+    'failure': (error: ErrorType) => ({ error }),
+  },
+});
+
+export const FilesDeleteActions = createActionGroup({
+  source: 'Files Delete',
+  events: {
+    'delete': props<{file_id: number}>(),
+    'success': props<{file: FileDeleteResponseInterface}>(),
+    'failure': (error: ErrorType) => ({ error }),
   },
 });
 

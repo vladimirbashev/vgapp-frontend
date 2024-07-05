@@ -1,7 +1,7 @@
 import {UserInterface} from "../../shared/types/user.interface";
 
 export interface FileInterface {
-  id: string
+  id: number
   path: string
   user: UserInterface
   createdate: string
@@ -14,4 +14,8 @@ export type FilesType = FileInterface[] | null;
 export interface FilesResponseInterface {
   items: FileInterface[]
   count: number
+}
+
+export interface FileDeleteResponseInterface {
+  file_id: number
 }

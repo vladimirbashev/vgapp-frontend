@@ -12,6 +12,7 @@ import {AsyncPipe} from "@angular/common";
 import {FlexLayoutModule} from "@ngbracket/ngx-layout";
 import {MatProgressBar} from "@angular/material/progress-bar";
 import {Destroyer} from "../../../shared/components/base";
+import {ErrorNullableType} from "../../../shared/types/error.interface";
 
 @Component({
   selector: 'app-login',
@@ -37,7 +38,7 @@ export class LoginComponent extends Destroyer implements OnInit {
   private readonly fb: FormBuilder = inject(FormBuilder);
 
   isLoading$: Observable<boolean> = this.authFacade.isLoading$;
-  error$: Observable<string> = this.authFacade.error$;
+  error$: Observable<ErrorNullableType> = this.authFacade.error$;
   form: FormGroup = this.fb.group({
     username: ['', Validators.required],
     password: ['', Validators.required]

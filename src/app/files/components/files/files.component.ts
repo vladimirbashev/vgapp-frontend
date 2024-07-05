@@ -59,21 +59,21 @@ export class FilesComponent extends Destroyer implements OnInit{
     this.filesFacade.get('me', e.pageIndex *  e.pageSize, e.pageSize);
   }
 
-  removeFile(event: any, file: FileInterface) {
-    // this.filesFacade.delete(file.id);
+  removeFile(e: any, file: FileInterface) {
+    this.filesFacade.delete(file.id);
   }
 
-  onFileUploadClick(event: any) {
+  onFileUploadClick(e: any) {
     if (this.fileUpload)
       this.fileUpload.nativeElement.click()
   }
 
-  onInput(event: any) {
+  onInput(e: any) {
 
   }
 
-  onFileSelected(event: any) {
-    let files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
+  onFileSelected(e: any) {
+    let files = e.dataTransfer ? e.dataTransfer.files : e.target.files;
     console.log('event::::::', event)
     this.filesFacade.post(files[0]);
     this.clearInputElement();

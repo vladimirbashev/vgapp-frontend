@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core'
 import {HttpClient, HttpParams} from '@angular/common/http'
 import {Observable} from 'rxjs'
 import {environment} from "../../../environments/environment";
-import {FileInterface, FilesResponseInterface} from "../types/filesResponseInterface";
+import {FileDeleteResponseInterface, FileInterface, FilesResponseInterface} from "../types/filesResponseInterface";
+import {ErrorInterface} from "../../shared/types/error.interface";
 
 
 @Injectable({
@@ -26,5 +27,10 @@ export class FilesService {
     data.append('file', file, file.name);
     const url = `${environment.apiUrl}/files/`;
     return this.http.post<FileInterface>(url, data)
+  }
+
+  delete(file_id: number): Observable<FileDeleteResponseInterface> {
+    const url = `${environment.apiUrl}/files/${file_id}/`;
+    return this.http.delete<FileDeleteResponseInterface>(url)
   }
 }

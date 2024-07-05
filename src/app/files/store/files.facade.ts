@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import {FilesGetActions, FilesPostActions} from "./filesActions";
+import {FilesDeleteActions, FilesGetActions, FilesPostActions} from "./filesActions";
 import {Observable} from "rxjs";
 import {FilesType} from "../types/filesResponseInterface";
 import {errorSelector, filesCountSelector, filesSelector, isLoadingSelector} from "./files.selectors";
@@ -21,5 +21,9 @@ export class FilesFacade {
 
   post(postFile: any): void {
     this.store.dispatch(FilesPostActions.post({postFile}))
+  }
+
+  delete(file_id: number): void {
+    this.store.dispatch(FilesDeleteActions.delete({file_id}))
   }
 }

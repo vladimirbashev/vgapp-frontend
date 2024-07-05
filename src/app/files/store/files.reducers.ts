@@ -1,6 +1,6 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import {filesInitialState, FilesStateInterface} from "./files.state";
-import {FilesGetActions, FilesPostActions} from "./filesActions";
+import {FilesDeleteActions, FilesGetActions, FilesPostActions} from "./filesActions";
 
 
 export const filesFeature = createFeature({
@@ -51,6 +51,31 @@ export const filesFeature = createFeature({
     ),
     on(
       FilesPostActions.failure,
+      (state, action): FilesStateInterface => ({
+        ...state,
+        loading: false,
+        error: action.error
+      })
+    ),
+    on(
+      FilesDeleteActions.delete,
+      (state): FilesStateInterface => ({
+        ...state,
+        loading: true,
+        error: null,
+      })
+    ),
+    on(
+      FilesDeleteActions.success,
+      (state, action): FilesStateInterface => ({
+        ...state,
+        data: state.data,
+        count: state.count - 1,
+        loading: false,
+      })
+    ),
+    on(
+      FilesDeleteActions.failure,
       (state, action): FilesStateInterface => ({
         ...state,
         loading: false,

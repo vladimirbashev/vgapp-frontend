@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {AsyncPipe} from "@angular/common";
-import {ErrorType} from "../../types/error.interface";
+import {ErrorNullableType} from "../../types/error.interface";
 
 @Component({
   selector: 'app-error-message',
@@ -14,7 +14,7 @@ import {ErrorType} from "../../types/error.interface";
   styleUrl: './error-message.component.scss'
 })
 export class ErrorMessageComponent implements OnInit{
-  @Input('value') value: Observable<ErrorType>
+  @Input('value') value: Observable<ErrorNullableType>
   message: Observable<string | null>
 
   ngOnInit(): void {
