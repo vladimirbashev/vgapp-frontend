@@ -1,21 +1,24 @@
 @import "_variables";
 
-.files-table {
-  width: 600px;;
+.files-container {
+  width: 50%;
+  margin: 20px;
+  max-width: 50%;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
 }
 
 .mat-column-path {
   width: 32px;
-  border-right: 1px solid currentColor;
-  padding-right: 24px;
-  text-align: center;
 }
 
-//.mat-column-name {
-//  padding-left: 16px;
-//  font-size: 20px;
-//}
-//
+.mat-column-status {
+  width:10px;
+}
+
 //.mat-column-files-weight {
 //  font-style: italic;
 //}
