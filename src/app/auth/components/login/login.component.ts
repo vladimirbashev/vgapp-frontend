@@ -40,7 +40,7 @@ export class LoginComponent extends Destroyer implements OnInit {
   isLoading$: Observable<boolean> = this.authFacade.isLoading$;
   error$: Observable<ErrorNullableType> = this.authFacade.error$;
   form: FormGroup = this.fb.group({
-    username: ['', Validators.required],
+    email: ['', Validators.required],
     password: ['', Validators.required]
   })
 

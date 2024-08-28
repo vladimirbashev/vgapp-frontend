@@ -3,7 +3,6 @@ export interface UserInterface {
   email: string
   createdate: string
   updatedate: string
-  username: string
 }
 
 export type UserNullableType = UserInterface | null

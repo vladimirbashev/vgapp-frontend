@@ -29,7 +29,7 @@ export class AuthService {
   login(data: TokenRequestInterface): Observable<TokenResponseInterface> {
     const url = environment.apiUrl + '/token/'
     let fd = new FormData()
-    fd.append('username', data.username)
+    fd.append('username', data.email)
     fd.append('password', data.password)
     return this.http.post<TokenResponseInterface>(url, fd)
   }
