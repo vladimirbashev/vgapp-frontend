@@ -31,14 +31,14 @@ export const register = createEffect(
   { functional: true }
 );
 
-export const redirectAfterRegister = createEffect(
-  (actions$ = inject(Actions), router = inject(Router)) => {
-    return actions$.pipe(
-      ofType(RegisterActions.success),
-      tap(() => {
-        router.navigateByUrl('/login')
-      })
-    );
-  },
-  { dispatch: false, functional: true }
-);
+// export const redirectAfterRegister = createEffect(
+//   (actions$ = inject(Actions), router = inject(Router)) => {
+//     return actions$.pipe(
+//       ofType(RegisterActions.success),
+//       tap(() => {
+//         router.navigateByUrl('/login')
+//       })
+//     );
+//   },
+//   { dispatch: false, functional: true }
+// );

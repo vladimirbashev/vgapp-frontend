@@ -34,14 +34,14 @@ export const currentUserFailure = createEffect(
   { functional: true }
 );
 
-export const redirectAfterLoggedIn = createEffect(
-  (actions$ = inject(Actions), router = inject(Router)) => {
-    return actions$.pipe(
-      ofType(CurrentUserActions.success),
-      tap(() => {
-        router.navigateByUrl('/')
-      })
-    );
-  },
-  { dispatch: false, functional: true }
-);
+// export const redirectAfterLoggedIn = createEffect(
+//   (actions$ = inject(Actions), router = inject(Router)) => {
+//     return actions$.pipe(
+//       ofType(CurrentUserActions.success),
+//       tap(() => {
+//         router.navigateByUrl('/')
+//       })
+//     );
+//   },
+//   { dispatch: false, functional: true }
+// );

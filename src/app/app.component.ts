@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import {MenuComponent} from "./shared/components/menu/menu.component";
 import {AuthFacade} from "./auth/store/auth.facade";
 import {FlexModule} from "@ngbracket/ngx-layout";
+import {AuthService} from "./auth/services/auth.service";
 
 
 @Component({
@@ -15,8 +16,13 @@ import {FlexModule} from "@ngbracket/ngx-layout";
 export class AppComponent implements OnInit{
   title = 'vgapp-frontend';
   private readonly authFacade: AuthFacade = inject(AuthFacade);
+  private readonly authService: AuthService = inject(AuthService);
 
   ngOnInit(): void {
-    this.authFacade.currentUser();
+    if (this.authService.isAuthenticated()) {
+      this.authFacade.currentUser();
+    } else {
+      this.authFacade.get_token_google();
+    }
   }
 }

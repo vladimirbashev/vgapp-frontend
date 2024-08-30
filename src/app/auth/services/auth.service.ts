@@ -26,12 +26,17 @@ export class AuthService {
     return this.http.get<UserInterface>(url)
   }
 
-  login(data: TokenRequestInterface): Observable<TokenResponseInterface> {
+  getToken(data: TokenRequestInterface): Observable<TokenResponseInterface> {
     const url = environment.apiUrl + '/token/'
     let fd = new FormData()
     fd.append('username', data.email)
     fd.append('password', data.password)
     return this.http.post<TokenResponseInterface>(url, fd)
+  }
+
+  getTokenGoogle(): Observable<TokenResponseInterface> {
+    const url = environment.apiUrl + '/token-google/'
+    return this.http.get<TokenResponseInterface>(url)
   }
 
   public isAuthenticated(): boolean {

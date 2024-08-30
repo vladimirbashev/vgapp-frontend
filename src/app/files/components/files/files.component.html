@@ -13,6 +13,7 @@
       <input #fileUpload type="file" class="input_fileupload--hidden"
              (input)="onInput($event)"
              (change)="onFileSelected($event)">
+<!--      <a href="/api/authorize"><button mat-flat-button color="primary">Google SSO</button></a>-->
     </div>
     <section class="files-container mat-elevation-z8" tabindex="0">
       <table mat-table [dataSource]="dataSource">

@@ -1,6 +1,12 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { authInitialState, AuthStateInterface } from './auth.state';
-import {CurrentUserActions, LoginActions, LogoutActions, RegisterActions} from "./auth.actions";
+import {
+  CurrentUserActions,
+  GetTokenActions,
+  GetTokenGoogleActions,
+  LogoutActions,
+  RegisterActions
+} from "./auth.actions";
 
 
 export const authFeature = createFeature({
@@ -31,7 +37,7 @@ export const authFeature = createFeature({
       })
     ),
     on(
-      LoginActions.login,
+      GetTokenActions.get,
       (state): AuthStateInterface => ({
         ...state,
         loading: true,
@@ -39,14 +45,37 @@ export const authFeature = createFeature({
       })
     ),
     on(
-      LoginActions.success,
+      GetTokenActions.success,
       (state, action): AuthStateInterface => ({
         ...state,
         loading: false,
       })
     ),
     on(
-      LoginActions.failure,
+      GetTokenActions.failure,
+      (state, action): AuthStateInterface => ({
+        ...state,
+        loading: false,
+        error: action.error
+      })
+    ),
+    on(
+      GetTokenGoogleActions.get,
+      (state): AuthStateInterface => ({
+        ...state,
+        loading: true,
+        error: null,
+      })
+    ),
+    on(
+      GetTokenGoogleActions.success,
+      (state, action): AuthStateInterface => ({
+        ...state,
+        loading: false,
+      })
+    ),
+    on(
+      GetTokenGoogleActions.failure,
       (state, action): AuthStateInterface => ({
         ...state,
         loading: false,

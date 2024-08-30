@@ -14,15 +14,6 @@ export const CurrentUserActions = createActionGroup({
   },
 });
 
-export const LoginActions = createActionGroup({
-  source: 'Login',
-  events: {
-    'login': props<{request: TokenRequestInterface}>(),
-    'success': props<{token: TokenResponseInterface}>(),
-    'failure':  props<{error: ErrorType}>()
-  },
-});
-
 export const LogoutActions = createActionGroup({
   source: 'Logout',
   events: {
@@ -37,6 +28,24 @@ export const RegisterActions = createActionGroup({
   events: {
     'register': props<{request: RegisterRequestInterface}>(),
     'success':  props<{user: UserInterface}>(),
+    'failure':  props<{error: ErrorType}>()
+  },
+});
+
+export const GetTokenActions = createActionGroup({
+  source: 'Login',
+  events: {
+    'get': props<{request: TokenRequestInterface}>(),
+    'success': props<{token: TokenResponseInterface}>(),
+    'failure':  props<{error: ErrorType}>()
+  },
+});
+
+export const GetTokenGoogleActions = createActionGroup({
+  source: 'GetTokenGoogle',
+  events: {
+    'get': emptyProps(),
+    'success': props<{token: TokenResponseInterface}>(),
     'failure':  props<{error: ErrorType}>()
   },
 });

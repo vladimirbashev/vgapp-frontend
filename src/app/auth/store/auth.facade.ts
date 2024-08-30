@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import {CurrentUserActions, LoginActions, LogoutActions, RegisterActions} from "./auth.actions";
+import {CurrentUserActions, GetTokenGoogleActions, GetTokenActions, LogoutActions, RegisterActions} from "./auth.actions";
 import {currentUserSelector, errorSelector, isLoadingSelector} from "./auth.selectors";
 import {UserNullableType} from "../../shared/types/user.interface";
 import {TokenRequestInterface} from "../types/tokenRequest.interface";
@@ -26,7 +26,11 @@ export class AuthFacade {
   }
 
   login(request: TokenRequestInterface): void {
-    this.store.dispatch(LoginActions.login({request}));
+    this.store.dispatch(GetTokenActions.get({request}));
+  }
+
+  get_token_google(): void {
+    this.store.dispatch(GetTokenGoogleActions.get());
   }
 
   register(request: RegisterRequestInterface): void {
